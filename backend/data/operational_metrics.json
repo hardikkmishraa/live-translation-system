@@ -1,0 +1,386 @@
+{
+  "total_requests": 20,
+  "successful_requests": 20,
+  "failed_requests": 0,
+  "direction_counts": {
+    "hi_to_en": 12,
+    "en_to_hi": 8,
+    "auto": 0
+  },
+  "latency_sums": {
+    "asr_ms": 34202.159999999996,
+    "ser_ms": 4890.64,
+    "nmt_ms": 32167.920000000002,
+    "tts_ms": 9846.689999999999,
+    "total_ms": 129144.66400196397
+  },
+  "latency_counts": {
+    "asr_ms": 20,
+    "ser_ms": 17,
+    "nmt_ms": 20,
+    "tts_ms": 9,
+    "total_ms": 20
+  },
+  "recent_requests": [
+    {
+      "request_id": "24f2e89c7bb84af59b543285f68dfc7f",
+      "timestamp": 1794718139.525,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 237.1,
+        "ser_ms": 192.8,
+        "nmt_ms": 630.8,
+        "tts_ms": 0.0,
+        "total_ms": 1073.4
+      },
+      "error": null
+    },
+    {
+      "request_id": "7d7127e5508f4c0d8a4d61fb2b2a88cc",
+      "timestamp": 1794718154.657,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "unavailable",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 120.0,
+        "ser_ms": 0.0,
+        "nmt_ms": 250.0,
+        "tts_ms": 0.0,
+        "total_ms": 14.9
+      },
+      "error": null
+    },
+    {
+      "request_id": "b15e0ed5dc8346c28dc722bfe0672c77",
+      "timestamp": 1794718443.845,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 9660.0,
+        "ser_ms": 339.3,
+        "nmt_ms": 206.2,
+        "tts_ms": 1657.8,
+        "total_ms": 14783.7
+      },
+      "error": null
+    },
+    {
+      "request_id": "780532bfbdf14cac8fb087fa58c416bd",
+      "timestamp": 1794746798.609,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 536.9,
+        "ser_ms": 746.6,
+        "nmt_ms": 6394.0,
+        "tts_ms": 511.5,
+        "total_ms": 8225.7
+      },
+      "error": null
+    },
+    {
+      "request_id": "f186d94aa5ce471d9ef5d7f102a2b2d0",
+      "timestamp": 1794746805.692,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "angry",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 316.4,
+        "ser_ms": 273.2,
+        "nmt_ms": 643.2,
+        "tts_ms": 671.4,
+        "total_ms": 1984.0
+      },
+      "error": null
+    },
+    {
+      "request_id": "15e768d8381a4a56819c3099f86a1eba",
+      "timestamp": 1794746813.739,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 246.9,
+        "ser_ms": 245.4,
+        "nmt_ms": 659.8,
+        "tts_ms": 530.4,
+        "total_ms": 1720.2
+      },
+      "error": null
+    },
+    {
+      "request_id": "a58827aa2013494483aec59225787b11",
+      "timestamp": 1794746828.701,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 280.3,
+        "ser_ms": 200.8,
+        "nmt_ms": 689.5,
+        "tts_ms": 540.5,
+        "total_ms": 1734.2
+      },
+      "error": null
+    },
+    {
+      "request_id": "3f64e4ca7b4945eb9c8d9501e258ea1f",
+      "timestamp": 1794747766.64,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 10934.8,
+        "ser_ms": 947.8,
+        "nmt_ms": 8861.6,
+        "tts_ms": 3843.6,
+        "total_ms": 34878.0
+      },
+      "error": null
+    },
+    {
+      "request_id": "9f6e1d0bfd5641d08171120a23fa832d",
+      "timestamp": 1794761464.56,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 45.0,
+        "ser_ms": 183.4,
+        "nmt_ms": 60.0,
+        "tts_ms": 0.0,
+        "total_ms": 5874.7
+      },
+      "error": null
+    },
+    {
+      "request_id": "de545e4ee2844858bcb740bf3e737588",
+      "timestamp": 1794761514.058,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 45.0,
+        "ser_ms": 185.7,
+        "nmt_ms": 60.0,
+        "tts_ms": 0.0,
+        "total_ms": 5588.6
+      },
+      "error": null
+    },
+    {
+      "request_id": "414ecb29c1734643bc21228cf0777e29",
+      "timestamp": 1794761522.706,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 45.0,
+        "ser_ms": 194.9,
+        "nmt_ms": 60.0,
+        "tts_ms": 0.0,
+        "total_ms": 4448.2
+      },
+      "error": null
+    },
+    {
+      "request_id": "88a1417304c6452b99f0bd05858c22ce",
+      "timestamp": 1794761552.083,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "unavailable",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 120.0,
+        "ser_ms": 0.0,
+        "nmt_ms": 250.0,
+        "tts_ms": 0.0,
+        "total_ms": 17.0
+      },
+      "error": null
+    },
+    {
+      "request_id": "9dd4075a65cc4e9cacf6da3f988932f1",
+      "timestamp": 1794761581.771,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 972.0,
+        "ser_ms": 187.3,
+        "nmt_ms": 10171.9,
+        "tts_ms": 668.5,
+        "total_ms": 15686.7
+      },
+      "error": null
+    },
+    {
+      "request_id": "eef9497bbd3949668e70bae455f2b3ec",
+      "timestamp": 1794761691.893,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 9684.0,
+        "ser_ms": 183.6,
+        "nmt_ms": 239.1,
+        "tts_ms": 0.0,
+        "total_ms": 15500.8
+      },
+      "error": null
+    },
+    {
+      "request_id": "c4b5733d140a462cb298c8a7c221b58a",
+      "timestamp": 1794761701.114,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 248.1,
+        "ser_ms": 189.7,
+        "nmt_ms": 750.9,
+        "tts_ms": 0.0,
+        "total_ms": 5118.5
+      },
+      "error": null
+    },
+    {
+      "request_id": "2d67506a66c84f8fbddb60bcb2b6ce3b",
+      "timestamp": 1794761752.959,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 45.0,
+        "ser_ms": 182.7,
+        "nmt_ms": 60.0,
+        "tts_ms": 0.0,
+        "total_ms": 3271.0
+      },
+      "error": null
+    },
+    {
+      "request_id": "1f5ff59ef5a34423961df426e11ffa6a",
+      "timestamp": 1794761753.155,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "sad",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 45.0,
+        "ser_ms": 184.4,
+        "nmt_ms": 60.0,
+        "tts_ms": 0.0,
+        "total_ms": 195.1
+      },
+      "error": null
+    },
+    {
+      "request_id": "872ae3699500484e8da8234aa499ba36",
+      "timestamp": 1794761772.04,
+      "direction": "en_to_hi",
+      "source_lang": "en",
+      "target_lang": "hi",
+      "success": true,
+      "detected_emotion": "unavailable",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 120.0,
+        "ser_ms": 0.0,
+        "nmt_ms": 250.0,
+        "tts_ms": 0.0,
+        "total_ms": 13.7
+      },
+      "error": null
+    },
+    {
+      "request_id": "e9516a92c23d44f9a6d29bd96874053d",
+      "timestamp": 1794806811.692,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "disgust",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 182.3,
+        "ser_ms": 201.9,
+        "nmt_ms": 1221.9,
+        "tts_ms": 680.2,
+        "total_ms": 7033.9
+      },
+      "error": null
+    },
+    {
+      "request_id": "e93b65f90368416893bcc7eafb5e221a",
+      "timestamp": 1794806814.005,
+      "direction": "hi_to_en",
+      "source_lang": "hi",
+      "target_lang": "en",
+      "success": true,
+      "detected_emotion": "happy",
+      "tts_engine": "sarvam",
+      "latencies": {
+        "asr_ms": 318.5,
+        "ser_ms": 251.1,
+        "nmt_ms": 649.1,
+        "tts_ms": 742.7,
+        "total_ms": 1982.3
+      },
+      "error": null
+    }
+  ]
+}

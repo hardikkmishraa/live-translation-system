@@ -1,0 +1,7 @@
+utterance_id,filepath,absolute_filepath,actor_id,language,emotion,label_id,sentence_id,duration_seconds,sample_rate,peak_amplitude,rms_energy,split
+A6_H_A_S1,audio/A6_H_A_S1.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A6_H_A_S1.wav,A6,Hindi,angry,0,S1,2.949,16000,0.8639,0.126684,train
+A6_H_D_S5,audio/A6_H_D_S5.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A6_H_D_S5.wav,A6,Hindi,disgust,4,S5,4.621,16000,0.368,0.04753,train
+A7_H_F_S1,audio/A7_H_F_S1.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A7_H_F_S1.wav,A7,Hindi,fear,5,S1,3.529,16000,0.6649,0.072062,train
+A6_H_H_S8,audio/A6_H_H_S8.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A6_H_H_S8.wav,A6,Hindi,happy,1,S8,2.926,16000,0.5555,0.075435,train
+A6_H_N_S5,audio/A6_H_N_S5.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A6_H_N_S5.wav,A6,Hindi,neutral,3,S5,3.599,16000,0.4948,0.031627,train
+A10_H_S_S1,audio/A10_H_S_S1.wav,/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi/audio/A10_H_S_S1.wav,A10,Hindi,sad,2,S1,2.949,16000,0.5758,0.068198,train

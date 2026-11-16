@@ -1,0 +1,25 @@
+{
+  "dataset_name": "SAMVEDNA-Hindi",
+  "total_samples": 6,
+  "emotion_distribution": {
+    "angry": 1,
+    "happy": 1,
+    "sad": 1,
+    "neutral": 1,
+    "disgust": 1,
+    "fear": 1
+  },
+  "splits": {
+    "train": 6,
+    "val": 0,
+    "test": 0
+  },
+  "actors": {
+    "A6": 4,
+    "A7": 1,
+    "A10": 1
+  },
+  "sample_rate": 16000,
+  "format": "mono_16bit_pcm_wav",
+  "audio_stream_verified": true
+}

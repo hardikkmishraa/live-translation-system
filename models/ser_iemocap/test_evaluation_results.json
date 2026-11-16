@@ -1,0 +1,96 @@
+{
+  "evaluation_split": "test (Session 5 untouched)",
+  "test_sample_count": 1241,
+  "test_sessions": [
+    5
+  ],
+  "test_speakers": [
+    "Ses05_F",
+    "Ses05_M"
+  ],
+  "overall_metrics": {
+    "accuracy": 0.3884,
+    "macro_precision": 0.4476,
+    "macro_recall": 0.376,
+    "macro_f1": 0.2665,
+    "weighted_f1": 0.2583
+  },
+  "per_class_metrics": {
+    "angry": {
+      "precision": 0.4194,
+      "recall": 0.4588,
+      "f1_score": 0.4382,
+      "support": 170
+    },
+    "happy": {
+      "precision": 1.0,
+      "recall": 0.0452,
+      "f1_score": 0.0866,
+      "support": 442
+    },
+    "sad": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 245
+    },
+    "neutral": {
+      "precision": 0.371,
+      "recall": 1.0,
+      "f1_score": 0.5412,
+      "support": 384
+    }
+  },
+  "confusion_matrix": {
+    "angry": {
+      "angry": 78,
+      "happy": 0,
+      "sad": 0,
+      "neutral": 92
+    },
+    "happy": {
+      "angry": 108,
+      "happy": 20,
+      "sad": 0,
+      "neutral": 314
+    },
+    "sad": {
+      "angry": 0,
+      "happy": 0,
+      "sad": 0,
+      "neutral": 245
+    },
+    "neutral": {
+      "angry": 0,
+      "happy": 0,
+      "sad": 0,
+      "neutral": 384
+    }
+  },
+  "raw_confusion_matrix": [
+    [
+      78,
+      0,
+      0,
+      92
+    ],
+    [
+      108,
+      20,
+      0,
+      314
+    ],
+    [
+      0,
+      0,
+      0,
+      245
+    ],
+    [
+      0,
+      0,
+      0,
+      384
+    ]
+  ]
+}

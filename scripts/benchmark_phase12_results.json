@@ -1,0 +1,50 @@
+{
+  "device": "mps",
+  "host": "Apple Silicon Mac (16GB Unified RAM)",
+  "timestamp": "2026-11-14 23:35:14",
+  "loading": {
+    "load_time_seconds": 1.628,
+    "rss_before_load_mb": 399.7,
+    "rss_after_load_mb": 470.17,
+    "model_memory_footprint_mb": 70.47
+  },
+  "cold_inference": {
+    "latency_ms": 723.24,
+    "top_emotion": "happy",
+    "confidence": 0.4209,
+    "probabilities": {
+      "angry": 0.1686,
+      "happy": 0.4209,
+      "sad": 0.2525,
+      "neutral": 0.158
+    }
+  },
+  "warm_inference": {
+    "iterations": 10,
+    "mean_ms": 202.41,
+    "median_ms": 204.42,
+    "p90_ms": 214.65,
+    "min_ms": 184.76,
+    "max_ms": 215.59
+  },
+  "pipeline_comparison": {
+    "iemocap": {
+      "model_id": "iemocap-wav2vec2-xlsr-4class",
+      "detected_emotion": "happy",
+      "ser_ms": 198.15,
+      "asr_ms": 671.42,
+      "nmt_ms": 748.75,
+      "total_pipeline_ms": 3413.34,
+      "measured_e2e_ms": 3415.16
+    },
+    "ravdess": {
+      "model_id": "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition",
+      "detected_emotion": "calm",
+      "ser_ms": 2140.98,
+      "asr_ms": 248.06,
+      "nmt_ms": 744.79,
+      "total_pipeline_ms": 3157.32,
+      "measured_e2e_ms": 3159.8
+    }
+  }
+}

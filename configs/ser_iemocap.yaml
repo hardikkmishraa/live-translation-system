@@ -1,0 +1,44 @@
+model:
+  pretrained_model_name_or_path: "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"
+  num_labels: 4
+  labels: ["angry", "happy", "sad", "neutral"]
+  label_to_id:
+    angry: 0
+    happy: 1
+    sad: 2
+    neutral: 3
+  id_to_label:
+    0: angry
+    1: happy
+    2: sad
+    3: neutral
+  pooling_mode: "mean"
+  hidden_dropout_prob: 0.3
+  classifier_hidden_size: 256
+
+audio:
+  sampling_rate: 16000
+  max_duration_seconds: 6.0
+  max_samples: 96000
+  target_peak: 0.95
+  normalize_input: true
+
+training:
+  batch_size: 16
+  max_epochs: 6
+  learning_rate: 5.0e-4
+  encoder_learning_rate: 1.0e-5
+  weight_decay: 0.01
+  early_stopping_patience: 3
+  early_stopping_metric: "val_macro_f1"
+  use_class_weights: true
+  class_weights: [1.3445, 0.9144, 1.1706, 0.7643] # angry, happy, sad, neutral
+  seed: 42
+  device: "mps" # Auto-falls back to cpu if mps unavailable
+  checkpoint_dir: "models/ser_iemocap"
+
+augmentation:
+  enabled: true
+  gaussian_noise_std: 0.003
+  gain_range_db: [-1.5, 1.5]
+

@@ -1,0 +1,159 @@
+{
+  "accuracy": 0.4525,
+  "macro_f1": 0.4366,
+  "weighted_f1": 0.4366,
+  "uar": 0.4525,
+  "per_class": {
+    "angry": {
+      "precision": 0.5893,
+      "recall": 0.99,
+      "f1": 0.7388,
+      "support": 100
+    },
+    "disgust": {
+      "precision": 0.5222,
+      "recall": 0.47,
+      "f1": 0.4947,
+      "support": 100
+    },
+    "fear": {
+      "precision": 0.3377,
+      "recall": 0.26,
+      "f1": 0.2938,
+      "support": 100
+    },
+    "happy": {
+      "precision": 0.4778,
+      "recall": 0.43,
+      "f1": 0.4526,
+      "support": 100
+    },
+    "neutral": {
+      "precision": 0.2892,
+      "recall": 0.24,
+      "f1": 0.2623,
+      "support": 100
+    },
+    "sad": {
+      "precision": 0.3063,
+      "recall": 0.49,
+      "f1": 0.3769,
+      "support": 100
+    },
+    "sarcastic": {
+      "precision": 0.3448,
+      "recall": 0.2,
+      "f1": 0.2532,
+      "support": 100
+    },
+    "surprise": {
+      "precision": 0.7297,
+      "recall": 0.54,
+      "f1": 0.6207,
+      "support": 100
+    }
+  },
+  "confusion_matrix": [
+    [
+      99,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      16,
+      47,
+      5,
+      2,
+      13,
+      8,
+      6,
+      3
+    ],
+    [
+      0,
+      5,
+      26,
+      12,
+      14,
+      39,
+      2,
+      2
+    ],
+    [
+      1,
+      9,
+      5,
+      43,
+      9,
+      22,
+      6,
+      5
+    ],
+    [
+      22,
+      6,
+      2,
+      9,
+      24,
+      26,
+      6,
+      5
+    ],
+    [
+      1,
+      6,
+      24,
+      6,
+      9,
+      49,
+      3,
+      2
+    ],
+    [
+      26,
+      12,
+      5,
+      10,
+      13,
+      12,
+      20,
+      2
+    ],
+    [
+      3,
+      5,
+      10,
+      8,
+      1,
+      4,
+      15,
+      54
+    ]
+  ],
+  "speaker_wise": {
+    "F4": {
+      "samples": 400,
+      "accuracy": 0.5475,
+      "macro_f1": 0.5331
+    },
+    "M4": {
+      "samples": 400,
+      "accuracy": 0.3575,
+      "macro_f1": 0.3388
+    }
+  },
+  "training_time_sec": 6.51,
+  "inference_time_total_sec": 0.098,
+  "inference_time_per_sample_ms": 0.122,
+  "device": "mps",
+  "test_speakers": [
+    "F4",
+    "M4"
+  ],
+  "test_samples": 800
+}

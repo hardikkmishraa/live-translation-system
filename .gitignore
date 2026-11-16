@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.local
+
+# Audio & Temporary files
+temp_storage/
+*.wav
+*.mp3
+*.m4a
+*.webm
+*.ogg
+*.mp4
+*.zip
+*.npz
+!tests/fixtures/*.wav
+
+# Raw datasets & feature caches
+data/raw_samvedna/
+data/raw_vishlb/
+data/*/audio/
+data/*/.feature_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Pytest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# HuggingFace & model caches
+huggingface_cache/
+models_cache/
+*.bin
+*.safetensors
+*.pt
+*.onnx
+*.tar.gz
+

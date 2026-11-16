@@ -1,0 +1,23 @@
+{
+  "label_to_id": {
+    "angry": 0,
+    "disgust": 1,
+    "fear": 2,
+    "happy": 3,
+    "neutral": 4,
+    "sad": 5,
+    "sarcastic": 6,
+    "surprise": 7
+  },
+  "id_to_label": {
+    "0": "angry",
+    "1": "disgust",
+    "2": "fear",
+    "3": "happy",
+    "4": "neutral",
+    "5": "sad",
+    "6": "sarcastic",
+    "7": "surprise"
+  },
+  "num_classes": 8
+}

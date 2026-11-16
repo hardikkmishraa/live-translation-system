@@ -1,0 +1,34 @@
+{
+  "dataset_name": "Vishal-B-Hindi-SER",
+  "input_directory": "/Users/hardikmishra/Data science projects/live translation system/data/raw_vishlb",
+  "output_directory": "/Users/hardikmishra/Data science projects/live translation system/data/vishlb_hindi",
+  "total_files_discovered": 3200,
+  "successfully_processed": 3200,
+  "rejected_or_corrupted": 0,
+  "emotion_distribution": {
+    "angry": 400,
+    "disgust": 400,
+    "fear": 400,
+    "happy": 400,
+    "neutral": 400,
+    "sad": 400,
+    "sarcastic": 400,
+    "surprise": 400
+  },
+  "splits_distribution": {
+    "train": 2000,
+    "val": 400,
+    "test": 800
+  },
+  "speaker_distribution": {
+    "F1": 400,
+    "F2": 400,
+    "F3": 400,
+    "F4": 400,
+    "M1": 400,
+    "M2": 400,
+    "M3": 400,
+    "M4": 400
+  },
+  "errors": []
+}

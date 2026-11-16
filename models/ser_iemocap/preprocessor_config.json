@@ -1,0 +1,11 @@
+{
+  "feature_extractor_type": "Wav2Vec2FeatureExtractor",
+  "sampling_rate": 16000,
+  "max_duration_seconds": 6.0,
+  "max_samples": 96000,
+  "normalize_audio": true,
+  "target_peak": 0.95,
+  "padding_value": 0.0,
+  "return_attention_mask": true,
+  "audio_channel": "mono"
+}

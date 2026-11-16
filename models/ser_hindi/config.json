@@ -1,0 +1,45 @@
+{
+  "model_type": "Frozen_Wav2Vec2_Lightweight_Head",
+  "base_encoder": "ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition",
+  "input_dimension": 1024,
+  "hidden_dimension": 256,
+  "num_classes": 8,
+  "dropout": 0.3,
+  "pooling": "temporal_masked_average",
+  "sample_rate": 16000,
+  "label_mapping": {
+    "angry": 0,
+    "disgust": 1,
+    "fear": 2,
+    "happy": 3,
+    "neutral": 4,
+    "sad": 5,
+    "sarcastic": 6,
+    "surprise": 7
+  },
+  "id_to_label": {
+    "0": "angry",
+    "1": "disgust",
+    "2": "fear",
+    "3": "happy",
+    "4": "neutral",
+    "5": "sad",
+    "6": "sarcastic",
+    "7": "surprise"
+  },
+  "speakers_dev": [
+    "F1",
+    "F2",
+    "F3",
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "speakers_test": [
+    "F4",
+    "M4"
+  ],
+  "test_accuracy": 0.4525,
+  "test_macro_f1": 0.4366,
+  "test_uar": 0.4525
+}

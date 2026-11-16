@@ -1,0 +1,100 @@
+{
+  "description": "IEMOCAP Speech Emotion Recognition Canonical Label Mappings",
+  "version": "1.0.0",
+  "raw_class_descriptions": {
+    "ang": "Angry (anger, rage, annoyance)",
+    "hap": "Happy (happiness, delight)",
+    "exc": "Excited (high arousal positive valence)",
+    "sad": "Sad (sadness, sorrow, grief)",
+    "neu": "Neutral (baseline neutral affect)",
+    "fru": "Frustrated (frustration, exasperation)",
+    "sur": "Surprise (startled, astonished)",
+    "fea": "Fear (anxiety, dread, terror)",
+    "dis": "Disgust (repulsion, aversion)",
+    "oth": "Other (uncategorized emotion)",
+    "xxx": "No Agreement / Unclassified (discarded in supervised training)"
+  },
+  "strategies": {
+    "four_class_merged": {
+      "description": "Standard gold-standard 4-class IEMOCAP benchmark merging hap and exc into positive valence (Neumann & Vu 2017, Li et al. 2019, Pepino et al. 2021).",
+      "classes": ["angry", "happy", "sad", "neutral"],
+      "class_to_id": {
+        "angry": 0,
+        "happy": 1,
+        "sad": 2,
+        "neutral": 3
+      },
+      "mapping": {
+        "ang": "angry",
+        "hap": "happy",
+        "exc": "happy",
+        "sad": "sad",
+        "neu": "neutral"
+      },
+      "excluded_classes": ["xxx", "fru", "sur", "fea", "dis", "oth"],
+      "total_samples": 5531
+    },
+    "four_class_strict": {
+      "description": "Strict 4-class setup where exc (excited) is excluded rather than merged into happy.",
+      "classes": ["angry", "happy", "sad", "neutral"],
+      "class_to_id": {
+        "angry": 0,
+        "happy": 1,
+        "sad": 2,
+        "neutral": 3
+      },
+      "mapping": {
+        "ang": "angry",
+        "hap": "happy",
+        "sad": "sad",
+        "neu": "neutral"
+      },
+      "excluded_classes": ["exc", "xxx", "fru", "sur", "fea", "dis", "oth"],
+      "total_samples": 4490
+    },
+    "five_class": {
+      "description": "5-class setup incorporating frustration (fru) with hap and exc merged.",
+      "classes": ["angry", "happy", "sad", "neutral", "frustrated"],
+      "class_to_id": {
+        "angry": 0,
+        "happy": 1,
+        "sad": 2,
+        "neutral": 3,
+        "frustrated": 4
+      },
+      "mapping": {
+        "ang": "angry",
+        "hap": "happy",
+        "exc": "happy",
+        "sad": "sad",
+        "neu": "neutral",
+        "fru": "frustrated"
+      },
+      "excluded_classes": ["xxx", "sur", "fea", "dis", "oth"],
+      "total_samples": 7380
+    },
+    "six_class": {
+      "description": "6-class setup keeping excited (exc) and happy (hap) as separate emotion categories alongside frustrated (fru).",
+      "classes": ["angry", "happy", "excited", "sad", "neutral", "frustrated"],
+      "class_to_id": {
+        "angry": 0,
+        "happy": 1,
+        "excited": 2,
+        "sad": 3,
+        "neutral": 4,
+        "frustrated": 5
+      },
+      "mapping": {
+        "ang": "angry",
+        "hap": "happy",
+        "exc": "excited",
+        "sad": "sad",
+        "neu": "neutral",
+        "fru": "frustrated"
+      },
+      "excluded_classes": ["xxx", "sur", "fea", "dis", "oth"],
+      "total_samples": 7380
+    }
+  }
+}
+

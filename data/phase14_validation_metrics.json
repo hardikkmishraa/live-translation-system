@@ -1,0 +1,268 @@
+{
+  "timestamp": 1794717798.190026,
+  "trials": [],
+  "latencies": {
+    "vad_preprocessing": [
+      21.91,
+      10.83,
+      26.37,
+      17.96,
+      11.05,
+      10.62,
+      22.85,
+      65.65,
+      14.46,
+      11.72
+    ],
+    "asr": [
+      9404.6,
+      185.26,
+      7402.55,
+      7343.61,
+      7426.08,
+      175.86,
+      7479.7,
+      7535.84,
+      7394.08,
+      174.13
+    ],
+    "ser": [
+      214.96,
+      184.05,
+      203.7,
+      203.68,
+      203.48,
+      185.68,
+      202.31,
+      205.7,
+      202.95,
+      184.53
+    ],
+    "nmt": [
+      0.0,
+      598.95,
+      100.66,
+      0.0,
+      0.0,
+      736.47,
+      113.25,
+      0.0,
+      0.0,
+      618.84
+    ],
+    "tts": [
+      0.0,
+      544.45,
+      874.7,
+      0.0,
+      0.0,
+      544.17,
+      849.56,
+      0.0,
+      0.0,
+      545.9
+    ],
+    "total_pipeline": [
+      9644.71,
+      1529.23,
+      9543.45,
+      7569.13,
+      7643.41,
+      1658.25,
+      11701.38,
+      7810.9,
+      7614.53,
+      1540.7
+    ]
+  },
+  "emotion_validation": {
+    "angry": [
+      {
+        "input_confidence": 0.25,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": true,
+        "notes": "High-energy vocal projection with sharp emphasis and increased intensity (Angry); Gated: SER confidence (0.25) < 0.35; defaulted to neutral."
+      },
+      {
+        "input_confidence": 0.42,
+        "output_emotion": "angry",
+        "pitch_multiplier": 1.098,
+        "rate_multiplier": 1.095,
+        "is_gated": false,
+        "notes": "High-energy vocal projection with sharp emphasis and increased intensity (Angry); Soft blended: SER confidence (0.42) scaled with factor 0.47."
+      },
+      {
+        "input_confidence": 0.85,
+        "output_emotion": "angry",
+        "pitch_multiplier": 1.21,
+        "rate_multiplier": 1.204,
+        "is_gated": false,
+        "notes": "High-energy vocal projection with sharp emphasis and increased intensity (Angry); Full expressive modulation: SER confidence (0.85) >= 0.5."
+      }
+    ],
+    "happy": [
+      {
+        "input_confidence": 0.25,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": true,
+        "notes": "Elevated pitch contour with upbeat speaking cadence (Happy/Excited); Gated: SER confidence (0.25) < 0.35; defaulted to neutral."
+      },
+      {
+        "input_confidence": 0.42,
+        "output_emotion": "happy",
+        "pitch_multiplier": 1.081,
+        "rate_multiplier": 1.064,
+        "is_gated": false,
+        "notes": "Elevated pitch contour with upbeat speaking cadence (Happy/Excited); Soft blended: SER confidence (0.42) scaled with factor 0.47."
+      },
+      {
+        "input_confidence": 0.85,
+        "output_emotion": "happy",
+        "pitch_multiplier": 1.174,
+        "rate_multiplier": 1.138,
+        "is_gated": false,
+        "notes": "Elevated pitch contour with upbeat speaking cadence (Happy/Excited); Full expressive modulation: SER confidence (0.85) >= 0.5."
+      }
+    ],
+    "sad": [
+      {
+        "input_confidence": 0.25,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": true,
+        "notes": "Subdued pitch, slower syllable tempo, softened vocal projection (Sad); Gated: SER confidence (0.25) < 0.35; defaulted to neutral."
+      },
+      {
+        "input_confidence": 0.42,
+        "output_emotion": "sad",
+        "pitch_multiplier": 0.938,
+        "rate_multiplier": 0.924,
+        "is_gated": false,
+        "notes": "Subdued pitch, slower syllable tempo, softened vocal projection (Sad); Soft blended: SER confidence (0.42) scaled with factor 0.47."
+      },
+      {
+        "input_confidence": 0.85,
+        "output_emotion": "sad",
+        "pitch_multiplier": 0.868,
+        "rate_multiplier": 0.838,
+        "is_gated": false,
+        "notes": "Subdued pitch, slower syllable tempo, softened vocal projection (Sad); Full expressive modulation: SER confidence (0.85) >= 0.5."
+      }
+    ],
+    "neutral": [
+      {
+        "input_confidence": 0.25,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": false,
+        "notes": "Standard conversational baseline prosody (Neutral); Gated: SER confidence (0.75) < 0.35; defaulted to neutral."
+      },
+      {
+        "input_confidence": 0.42,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": false,
+        "notes": "Standard conversational baseline prosody (Neutral); Gated: SER confidence (0.58) < 0.35; defaulted to neutral."
+      },
+      {
+        "input_confidence": 0.85,
+        "output_emotion": "neutral",
+        "pitch_multiplier": 1.0,
+        "rate_multiplier": 1.0,
+        "is_gated": false,
+        "notes": "Standard conversational baseline prosody (Neutral); Gated: SER confidence (0.85) < 0.35; defaulted to neutral."
+      }
+    ]
+  },
+  "provider_fallbacks": {
+    "sarvam_normal": {
+      "success": true,
+      "voice": "none",
+      "latency_ms": 1355.57,
+      "fallback_used": false
+    },
+    "sarvam_503_fallback_to_edge": {
+      "success": true,
+      "voice": "hi-IN-SwaraNeural",
+      "latency_ms": 1573.2,
+      "fallback_used": true,
+      "primary_failed": "SarvamTTSProvider"
+    },
+    "all_cloud_down_fallback_to_macos": {
+      "success": true,
+      "voice": "Lekha",
+      "latency_ms": 732.65,
+      "fallback_used": true,
+      "model_name": "macos_say_Lekha"
+    },
+    "complete_failure_honest_reporting": {
+      "audio_bytes_empty": true,
+      "model_name": "tts_error",
+      "error_reported": true
+    }
+  },
+  "cold_start": {
+    "models_initialization_ms": 0.43
+  },
+  "real_audio_utterance": {
+    "source_transcript": "\uc218\uace0\ud558\uc168\uc2b5\ub2c8\ub2e4.",
+    "translated_text": "\uc218\uace0\ud558\uc168\uc2b5\ub2c8\ub2e4.",
+    "detected_emotion": "happy",
+    "confidence": 0.4208,
+    "gender": "female",
+    "tts_engine": "macos_native",
+    "tts_voice": "Lekha",
+    "total_ms": 6196.62
+  },
+  "summary_statistics": {
+    "vad_preprocessing": {
+      "median_ms": 16.21,
+      "p90_ms": 30.3,
+      "p95_ms": 47.97,
+      "min_ms": 10.62,
+      "max_ms": 65.65
+    },
+    "asr": {
+      "median_ms": 7398.32,
+      "p90_ms": 7722.72,
+      "p95_ms": 8563.66,
+      "min_ms": 174.13,
+      "max_ms": 9404.6
+    },
+    "ser": {
+      "median_ms": 203.21,
+      "p90_ms": 206.63,
+      "p95_ms": 210.79,
+      "min_ms": 184.05,
+      "max_ms": 214.96
+    },
+    "nmt": {
+      "median_ms": 50.33,
+      "p90_ms": 630.6,
+      "p95_ms": 683.54,
+      "min_ms": 0.0,
+      "max_ms": 736.47
+    },
+    "tts": {
+      "median_ms": 272.08,
+      "p90_ms": 852.07,
+      "p95_ms": 863.39,
+      "min_ms": 0.0,
+      "max_ms": 874.7
+    },
+    "total_pipeline": {
+      "median_ms": 7628.97,
+      "p90_ms": 9850.38,
+      "p95_ms": 10775.88,
+      "min_ms": 1529.23,
+      "max_ms": 11701.38
+    }
+  }
+}

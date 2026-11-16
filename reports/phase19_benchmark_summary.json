@@ -1,0 +1,504 @@
+{
+  "timestamp": 1794764416.102101,
+  "device": "mps",
+  "sections": {
+    "utterance_matrix": [
+      {
+        "id": "EN_SHORT",
+        "source_lang": "en",
+        "target_lang": "hi",
+        "original_text": "Yes, absolutely.",
+        "asr_transcript": "Yes, absolutely.",
+        "translated_text": "\u091c\u0940 \u0939\u093e\u0901, \u092c\u093f\u0932\u094d\u0915\u0941\u0932\u0964",
+        "detected_emotion": "sad",
+        "ser_model": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class",
+        "tts_status": "success",
+        "total_ms": 11602.9,
+        "ser_ms": 207.26
+      },
+      {
+        "id": "EN_MEDIUM",
+        "source_lang": "en",
+        "target_lang": "hi",
+        "original_text": "Hello, I am testing the real-time speech translation system.",
+        "asr_transcript": "Hello, I am testing the real-time speech translation system.",
+        "translated_text": "\u0928\u092e\u0938\u094d\u0915\u093e\u0930, \u092e\u0948\u0902 \u0935\u093e\u0938\u094d\u0924\u0935\u093f\u0915 \u0938\u092e\u092f \u092d\u093e\u0937\u0923 \u0905\u0928\u0941\u0935\u093e\u0926 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u0915\u093e \u092a\u0930\u0940\u0915\u094d\u0937\u0923 \u0915\u0930 \u0930\u0939\u0940 \u0939\u0942\u0901\u0964",
+        "detected_emotion": "sad",
+        "ser_model": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class",
+        "tts_status": "success",
+        "total_ms": 2572.82,
+        "ser_ms": 207.44
+      },
+      {
+        "id": "EN_LONG",
+        "source_lang": "en",
+        "target_lang": "hi",
+        "original_text": "Artificial intelligence has enabled seamless cross-lingual voice communication with emotional awareness and natural speaking cadence.",
+        "asr_transcript": "Artificial intelligence has enabled seamless cross-lingual voice communication with emotional awareness and natural speaking cadence.",
+        "translated_text": "\u0915\u0943\u0924\u094d\u0930\u093f\u092e \u092c\u0941\u0926\u094d\u0927\u093f\u092e\u0924\u094d\u0924\u093e \u0928\u0947 \u092d\u093e\u0935\u0928\u093e\u0924\u094d\u092e\u0915 \u091c\u093e\u0917\u0930\u0942\u0915\u0924\u093e \u0914\u0930 \u0938\u094d\u0935\u093e\u092d\u093e\u0935\u093f\u0915 \u092c\u094b\u0932\u0928\u0947 \u0915\u0940 \u0932\u092f \u0915\u0947 \u0938\u093e\u0925 \u0928\u093f\u0930\u094d\u092c\u093e\u0927 \u0905\u0902\u0924\u0930-\u092d\u093e\u0937\u0940\u092f \u0927\u094d\u0935\u0928\u093f \u0938\u0902\u091a\u093e\u0930 \u0915\u094b \u0938\u0915\u094d\u0937\u092e \u0915\u093f\u092f\u093e \u0939\u0948\u0964",
+        "detected_emotion": "angry",
+        "ser_model": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class",
+        "tts_status": "success",
+        "total_ms": 3500.72,
+        "ser_ms": 193.46
+      },
+      {
+        "id": "EN_NAMES_NUMBERS",
+        "source_lang": "en",
+        "target_lang": "hi",
+        "original_text": "Dr. Vikram Sharma is scheduled to arrive at Terminal 3 at 4:45 PM on flight AI 102.",
+        "asr_transcript": "Dr. Vikram Sharma is scheduled to arrive at Terminal 3 at 445 p.m. on flyday I-1002.",
+        "translated_text": "\u0921\u0949. \u0935\u093f\u0915\u094d\u0930\u092e \u0936\u0930\u094d\u092e\u093e \u0906\u0908-1002 \u0915\u0947 \u092b\u094d\u0932\u093e\u092f\u0921\u0947 \u092a\u0930 \u0936\u093e\u092e 445 \u092c\u091c\u0947 \u091f\u0930\u094d\u092e\u093f\u0928\u0932 3 \u092a\u0930 \u0906\u0928\u0947 \u0935\u093e\u0932\u0947 \u0939\u0948\u0902\u0964",
+        "detected_emotion": "sad",
+        "ser_model": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class",
+        "tts_status": "success",
+        "total_ms": 3430.91,
+        "ser_ms": 190.78
+      },
+      {
+        "id": "HI_REAL_NEUTRAL",
+        "source_lang": "hi",
+        "target_lang": "en",
+        "audio_source": "data/vishlb_hindi/audio/F1_neutral_1.5.neutral-09.wav",
+        "asr_transcript": "Now, sir, we will have to keep this in mind.",
+        "translated_text": "Now, sir, we will have to keep this in mind.",
+        "detected_emotion": "fear",
+        "ser_model": "bilingual-ser-router-v1 -> hindi-wav2vec2-xlsr-8class",
+        "tts_status": "success",
+        "total_ms": 2644.73,
+        "ser_ms": 411.39
+      },
+      {
+        "id": "HI_REAL_HAPPY",
+        "source_lang": "hi",
+        "target_lang": "en",
+        "audio_source": "data/vishlb_hindi/audio/M1_happy_5.3.happy-10.wav",
+        "asr_transcript": "With the earthy pari Ramka in Tizarkar Raheethi.",
+        "translated_text": "With the earthy pari Ramka in tizarke rahati.",
+        "detected_emotion": "happy",
+        "ser_model": "bilingual-ser-router-v1 -> hindi-wav2vec2-xlsr-8class",
+        "tts_status": "success",
+        "total_ms": 2386.15,
+        "ser_ms": 206.45
+      },
+      {
+        "id": "HI_REAL_ANGER",
+        "source_lang": "hi",
+        "target_lang": "en",
+        "audio_source": "data/vishlb_hindi/audio/F4_angry_4.2. anger-02.wav",
+        "asr_transcript": "Gadith Kaprashtu Patra Kattintha",
+        "translated_text": "The most important letter is written.",
+        "detected_emotion": "angry",
+        "ser_model": "bilingual-ser-router-v1 -> hindi-wav2vec2-xlsr-8class",
+        "tts_status": "success",
+        "total_ms": 2067.63,
+        "ser_ms": 212.02
+      },
+      {
+        "id": "HI_REAL_FEAR",
+        "source_lang": "hi",
+        "target_lang": "en",
+        "audio_source": "data/vishlb_hindi/audio/M4_fear_8.2.fear-03.wav",
+        "asr_transcript": "\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd",
+        "translated_text": "\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\ufffd\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\u4f1f\ufffd",
+        "detected_emotion": "happy",
+        "ser_model": "bilingual-ser-router-v1 -> hindi-wav2vec2-xlsr-8class",
+        "tts_status": "success",
+        "total_ms": 11431.91,
+        "ser_ms": 421.1
+      }
+    ],
+    "emotion_routing": {
+      "hindi_8_classes": {
+        "angry": {
+          "ground_truth": "angry",
+          "predicted_top": "angry",
+          "confidence": 0.9966,
+          "all_8_probabilities": {
+            "angry": 0.9966,
+            "disgust": 0.0001,
+            "fear": 0.0,
+            "happy": 0.0,
+            "neutral": 0.0001,
+            "sad": 0.0,
+            "sarcastic": 0.0026,
+            "surprise": 0.0007
+          },
+          "ser_latency_ms": 246.8,
+          "plan_emotion": "angry",
+          "rate_multiplier": 1.208,
+          "pitch_multiplier": 1.215,
+          "prosody_notes": "High-energy vocal projection with sharp emphasis and increased intensity (Angry); Full expressive modulation: SER confidence (1.00) >= 0.5."
+        },
+        "disgust": {
+          "ground_truth": "disgust",
+          "predicted_top": "angry",
+          "confidence": 0.4645,
+          "all_8_probabilities": {
+            "angry": 0.4645,
+            "disgust": 0.2238,
+            "fear": 0.0036,
+            "happy": 0.059,
+            "neutral": 0.0502,
+            "sad": 0.0004,
+            "sarcastic": 0.1423,
+            "surprise": 0.0562
+          },
+          "ser_latency_ms": 190.59,
+          "plan_emotion": "angry",
+          "rate_multiplier": 1.159,
+          "pitch_multiplier": 1.164,
+          "prosody_notes": "High-energy vocal projection with sharp emphasis and increased intensity (Angry); Soft blended: SER confidence (0.46) scaled with factor 0.76."
+        },
+        "fear": {
+          "ground_truth": "fear",
+          "predicted_top": "happy",
+          "confidence": 0.4417,
+          "all_8_probabilities": {
+            "angry": 0.0,
+            "disgust": 0.0152,
+            "fear": 0.067,
+            "happy": 0.4417,
+            "neutral": 0.2202,
+            "sad": 0.0905,
+            "sarcastic": 0.1446,
+            "surprise": 0.0208
+          },
+          "ser_latency_ms": 181.95,
+          "plan_emotion": "happy",
+          "rate_multiplier": 1.081,
+          "pitch_multiplier": 1.101,
+          "prosody_notes": "Elevated pitch contour with upbeat speaking cadence (Happy/Excited); Soft blended: SER confidence (0.44) scaled with factor 0.61."
+        },
+        "happy": {
+          "ground_truth": "happy",
+          "predicted_top": "happy",
+          "confidence": 0.6051,
+          "all_8_probabilities": {
+            "angry": 0.0001,
+            "disgust": 0.0248,
+            "fear": 0.0508,
+            "happy": 0.6051,
+            "neutral": 0.0773,
+            "sad": 0.0863,
+            "sarcastic": 0.1282,
+            "surprise": 0.0275
+          },
+          "ser_latency_ms": 183.31,
+          "plan_emotion": "happy",
+          "rate_multiplier": 1.132,
+          "pitch_multiplier": 1.166,
+          "prosody_notes": "Elevated pitch contour with upbeat speaking cadence (Happy/Excited); Full expressive modulation: SER confidence (0.61) >= 0.5."
+        },
+        "neutral": {
+          "ground_truth": "neutral",
+          "predicted_top": "sad",
+          "confidence": 0.2978,
+          "all_8_probabilities": {
+            "angry": 0.0012,
+            "disgust": 0.2647,
+            "fear": 0.1305,
+            "happy": 0.0111,
+            "neutral": 0.1148,
+            "sad": 0.2978,
+            "sarcastic": 0.1274,
+            "surprise": 0.0525
+          },
+          "ser_latency_ms": 181.92,
+          "plan_emotion": "neutral",
+          "rate_multiplier": 1.0,
+          "pitch_multiplier": 1.0,
+          "prosody_notes": "Subdued pitch, slower syllable tempo, softened vocal projection (Sad); Gated: SER confidence (0.30) < 0.35; defaulted to neutral."
+        },
+        "sad": {
+          "ground_truth": "sad",
+          "predicted_top": "sad",
+          "confidence": 0.574,
+          "all_8_probabilities": {
+            "angry": 0.0001,
+            "disgust": 0.0301,
+            "fear": 0.302,
+            "happy": 0.0105,
+            "neutral": 0.0567,
+            "sad": 0.574,
+            "sarcastic": 0.0205,
+            "surprise": 0.0062
+          },
+          "ser_latency_ms": 181.6,
+          "plan_emotion": "sad",
+          "rate_multiplier": 0.838,
+          "pitch_multiplier": 0.868,
+          "prosody_notes": "Subdued pitch, slower syllable tempo, softened vocal projection (Sad); Full expressive modulation: SER confidence (0.57) >= 0.5."
+        },
+        "sarcastic": {
+          "ground_truth": "sarcastic",
+          "predicted_top": "sarcastic",
+          "confidence": 0.2916,
+          "all_8_probabilities": {
+            "angry": 0.2746,
+            "disgust": 0.1966,
+            "fear": 0.041,
+            "happy": 0.0538,
+            "neutral": 0.121,
+            "sad": 0.0031,
+            "sarcastic": 0.2916,
+            "surprise": 0.0183
+          },
+          "ser_latency_ms": 181.7,
+          "plan_emotion": "neutral",
+          "rate_multiplier": 1.0,
+          "pitch_multiplier": 1.0,
+          "prosody_notes": "Drawn-out syllable cadence with dynamic pitch glide and ironical emphasis (Sarcastic); Gated: SER confidence (0.29) < 0.35; defaulted to neutral."
+        },
+        "surprise": {
+          "ground_truth": "surprise",
+          "predicted_top": "surprise",
+          "confidence": 0.7357,
+          "all_8_probabilities": {
+            "angry": 0.0116,
+            "disgust": 0.0718,
+            "fear": 0.0007,
+            "happy": 0.1527,
+            "neutral": 0.002,
+            "sad": 0.0007,
+            "sarcastic": 0.0247,
+            "surprise": 0.7357
+          },
+          "ser_latency_ms": 184.75,
+          "plan_emotion": "surprise",
+          "rate_multiplier": 1.1,
+          "pitch_multiplier": 1.28,
+          "prosody_notes": "Prominent upward pitch inflection on initial syllables (Surprised); Full expressive modulation: SER confidence (0.74) >= 0.5."
+        }
+      },
+      "english_4_classes": {
+        "predicted": "sad",
+        "probabilities": {
+          "angry": 0.0195,
+          "happy": 0.0761,
+          "sad": 0.6249,
+          "neutral": 0.2795
+        },
+        "model_id": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class"
+      },
+      "unsupported_fallback": {
+        "is_fallback": true,
+        "reason": "Source language 'es' is unsupported or uncertain. Defaulting to English IEMOCAP 4-class SER baseline."
+      }
+    },
+    "tts_synthesis": {
+      "emotions": {
+        "neutral": {
+          "status": "success",
+          "voice_used": "kavya_hi_conversational",
+          "latency_ms": 1229.97,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 5.12,
+            "sample_rate": 16000,
+            "rms_energy": 0.1701,
+            "peak_amplitude": 0.9338,
+            "zero_crossing_rate": 0.11,
+            "byte_size": 163884
+          },
+          "rate_multiplier": 1.0,
+          "pitch_multiplier": 1.0
+        },
+        "happy": {
+          "status": "success",
+          "voice_used": "simran_hi_social_excited",
+          "latency_ms": 1412.84,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 4.8,
+            "sample_rate": 16000,
+            "rms_energy": 0.1703,
+            "peak_amplitude": 0.8551,
+            "zero_crossing_rate": 0.1886,
+            "byte_size": 153714
+          },
+          "rate_multiplier": 1.132,
+          "pitch_multiplier": 1.166
+        },
+        "angry": {
+          "status": "success",
+          "voice_used": "ritu_hi_reels",
+          "latency_ms": 1187.29,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 4.09,
+            "sample_rate": 16000,
+            "rms_energy": 0.1798,
+            "peak_amplitude": 0.8508,
+            "zero_crossing_rate": 0.1928,
+            "byte_size": 130874
+          },
+          "rate_multiplier": 1.196,
+          "pitch_multiplier": 1.2
+        },
+        "sad": {
+          "status": "success",
+          "voice_used": "roopa_hi_narration",
+          "latency_ms": 1210.67,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 5.3,
+            "sample_rate": 16000,
+            "rms_energy": 0.1498,
+            "peak_amplitude": 0.6649,
+            "zero_crossing_rate": 0.1226,
+            "byte_size": 169770
+          },
+          "rate_multiplier": 0.84,
+          "pitch_multiplier": 0.87
+        },
+        "fear": {
+          "status": "success",
+          "voice_used": "roopa_hi_narration",
+          "latency_ms": 1212.99,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 4.43,
+            "sample_rate": 16000,
+            "rms_energy": 0.1529,
+            "peak_amplitude": 0.6971,
+            "zero_crossing_rate": 0.135,
+            "byte_size": 141702
+          },
+          "rate_multiplier": 1.12,
+          "pitch_multiplier": 1.166
+        },
+        "disgust": {
+          "status": "success",
+          "voice_used": "ritu_hi_reels",
+          "latency_ms": 1287.63,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 5.61,
+            "sample_rate": 16000,
+            "rms_energy": 0.1395,
+            "peak_amplitude": 0.7449,
+            "zero_crossing_rate": 0.1648,
+            "byte_size": 179580
+          },
+          "rate_multiplier": 0.91,
+          "pitch_multiplier": 0.942
+        },
+        "sarcastic": {
+          "status": "success",
+          "voice_used": "ritu_hi_reels",
+          "latency_ms": 1356.47,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 5.09,
+            "sample_rate": 16000,
+            "rms_energy": 0.1646,
+            "peak_amplitude": 0.7563,
+            "zero_crossing_rate": 0.1661,
+            "byte_size": 162900
+          },
+          "rate_multiplier": 0.94,
+          "pitch_multiplier": 1.038
+        },
+        "surprise": {
+          "status": "success",
+          "voice_used": "simran_hi_social_excited",
+          "latency_ms": 1604.31,
+          "audio_metrics": {
+            "valid": true,
+            "duration_s": 4.86,
+            "sample_rate": 16000,
+            "rms_energy": 0.1707,
+            "peak_amplitude": 0.8825,
+            "zero_crossing_rate": 0.1609,
+            "byte_size": 155536
+          },
+          "rate_multiplier": 1.1,
+          "pitch_multiplier": 1.27
+        }
+      },
+      "macos_native_fallback_bytes": 90692
+    },
+    "performance_benchmarks": {
+      "p50_total_ms": 1316.91,
+      "p90_total_ms": 1328.7,
+      "p95_total_ms": 1329.74,
+      "mean_ser_ms": 194.28,
+      "mean_asr_ms": 360.1,
+      "initial_rss_mb": 485.2,
+      "final_rss_mb": 496.3,
+      "memory_delta_mb": 11.1
+    },
+    "resilience_validation": {
+      "silence_gate_pass": true,
+      "micro_audio_pass": true,
+      "noise_robustness_pass": true
+    }
+  },
+  "failures": [],
+  "latencies": {
+    "vad": [],
+    "feat": [],
+    "asr": [
+      408.16,
+      357.6,
+      361.26,
+      345.1,
+      363.44,
+      363.27,
+      354.7,
+      357.62,
+      349.2,
+      340.68
+    ],
+    "ser": [
+      211.1,
+      190.01,
+      187.97,
+      188.08,
+      185.3,
+      198.84,
+      200.29,
+      197.99,
+      196.89,
+      186.35
+    ],
+    "nmt": [
+      644.66,
+      621.59,
+      717.44,
+      661.6,
+      724.91,
+      646.07,
+      709.6,
+      686.49,
+      730.95,
+      748.84
+    ],
+    "tts": [],
+    "total": [
+      1313.37,
+      1229.22,
+      1320.45,
+      1249.53,
+      1328.47,
+      1263.99,
+      1322.07,
+      1292.58,
+      1326.42,
+      1330.78
+    ]
+  },
+  "memory_rss_mb": [
+    408.7,
+    435.77,
+    448.52,
+    461.02,
+    465.08,
+    468.36,
+    485.84,
+    486.41,
+    496.23,
+    496.27
+  ]
+}

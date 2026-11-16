@@ -1,0 +1,44 @@
+{
+  "dataset_name": "SAMVEDNA-Hindi-Audio",
+  "input_directory": "/Users/hardikmishra/Data science projects/live translation system/data/raw_samvedna",
+  "output_directory": "/Users/hardikmishra/Data science projects/live translation system/data/samvedna_hindi",
+  "hindi_only_filter": true,
+  "total_files_inspected": 18,
+  "format_breakdown": {
+    "mp4": 18,
+    "mp3": 0,
+    "wav": 0,
+    "other": 0
+  },
+  "language_breakdown": {
+    "Hindi": 6,
+    "English": 6,
+    "Punjabi": 6,
+    "Unknown": 0
+  },
+  "files_containing_audio": 18,
+  "video_only_or_silent_files": 0,
+  "successful_extractions": 6,
+  "rejected_or_corrupted": 0,
+  "duplicate_files_detected": 0,
+  "final_hindi_samples_per_emotion": {
+    "angry": 1,
+    "happy": 1,
+    "sad": 1,
+    "neutral": 1,
+    "disgust": 1,
+    "fear": 1
+  },
+  "splits_distribution": {
+    "train": 6,
+    "val": 0,
+    "test": 0
+  },
+  "actor_distribution": {
+    "A6": 4,
+    "A7": 1,
+    "A10": 1
+  },
+  "duplicates": [],
+  "errors": []
+}

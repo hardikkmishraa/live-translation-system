@@ -1,0 +1,79 @@
+{
+  "audio_decoding": {
+    "median": 0.45,
+    "p90": 3.49,
+    "p95": 3.49,
+    "min": 0.23,
+    "max": 3.49
+  },
+  "audio_resampling": {
+    "median": 1.62,
+    "p90": 4.75,
+    "p95": 4.75,
+    "min": 0.57,
+    "max": 4.75
+  },
+  "voice_activity_detection": {
+    "median": 0.14,
+    "p90": 0.7,
+    "p95": 0.7,
+    "min": 0.09,
+    "max": 0.7
+  },
+  "feature_and_gender_extraction": {
+    "median": 27.74,
+    "p90": 122.34,
+    "p95": 122.34,
+    "min": 2.88,
+    "max": 122.34
+  },
+  "whisper_asr_inference": {
+    "median": 294.93,
+    "p90": 2048.95,
+    "p95": 2048.95,
+    "min": 161.07,
+    "max": 2048.95
+  },
+  "ser_inference": {
+    "median": 108.71,
+    "p90": 223.79,
+    "p95": 223.79,
+    "min": 47.37,
+    "max": 223.79
+  },
+  "sarvam_api_translation": {
+    "median": 657.46,
+    "p90": 916.83,
+    "p95": 916.83,
+    "min": 565.14,
+    "max": 916.83
+  },
+  "tts_synthesis": {
+    "median": 958.77,
+    "p90": 1601.68,
+    "p95": 1601.68,
+    "min": 889.44,
+    "max": 1601.68
+  },
+  "audio_encoding_b64": {
+    "median": 0.14,
+    "p90": 0.22,
+    "p95": 0.22,
+    "min": 0.04,
+    "max": 0.22
+  },
+  "total_end_to_end_sequential": {
+    "median": 2076.04,
+    "p90": 4922.99,
+    "p95": 4922.99,
+    "min": 1780.36,
+    "max": 4922.99
+  },
+  "asr_ser_concurrent_total": {
+    "median": 405.92,
+    "p90": 680.66,
+    "p95": 680.66,
+    "min": 280.0,
+    "max": 680.66
+  }
+}

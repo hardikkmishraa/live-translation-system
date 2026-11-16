@@ -1,0 +1,9 @@
+{
+  "batch_latency_ms": 7460.9,
+  "streaming_feedback_ms": 0.1,
+  "streaming_total_ms": 2234.8,
+  "transcript_consistent": true,
+  "translation_consistent": true,
+  "batch_emotion": "disgust",
+  "streaming_emotion": "angry"
+}
