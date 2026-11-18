@@ -333,9 +333,17 @@ export class ResultsRenderer {
       const pitch = plan?.pitch_multiplier ?? 1.0;
       const zl = data.gating_weight_z ?? plan?.gating_weight_z;
       const zlStr = (zl !== undefined && zl !== null) ? Number(zl).toFixed(3) : '0.500';
+      const appliedEmotion = String(plan?.emotion || 'neutral').toLowerCase();
       const isAdapted = (rate !== 1.0 || pitch !== 1.0);
 
-      this.stageProsodyStatusText.textContent = isAdapted ? 'Heuristic Prosody Applied' : 'Baseline Prosody (Neutral)';
+      if (appliedEmotion !== 'neutral' && data.expressive_synthesis_supported) {
+        this.stageProsodyStatusText.textContent = `${appliedEmotion.charAt(0).toUpperCase()}${appliedEmotion.slice(1)} tone selected`;
+      } else if (isAdapted) {
+        this.stageProsodyStatusText.textContent = 'Voice tone adjusted';
+      } else {
+        const tgtLangName = data.target_language === 'hi' ? 'Hindi' : 'English';
+        this.stageProsodyStatusText.textContent = `Neutral ${tgtLangName} voice`;
+      }
       if (this.stageProsodyMetaText) {
         this.stageProsodyMetaText.textContent = `Rate: ${rate}x · Pitch: ${pitch}x · Gating (zₗ): ${zlStr}`;
       }

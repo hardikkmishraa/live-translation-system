@@ -499,6 +499,11 @@
   transform: rotate(180deg) scale(0.92);
 }
 
+.language-direction-arrow {
+  color: var(--color-text-tertiary);
+  font-size: 14px;
+}
+
 /* Waveform Canvas inside Centerpiece */
 .voice-waveform-area {
   width: 100%;

@@ -406,3 +406,32 @@ def test_websocket_live_speech_processing_emission():
             assert chunk["latency"]["total_pipeline_ms"] == 545.9
             assert "end_to_end_utterance_ms" in chunk["latency"]
 
+
+def test_websocket_segment_processing_failure_keeps_session_alive():
+    from unittest.mock import patch
+    from backend.app.api.endpoints import websocket as ws_module
+
+    with patch.object(
+        ws_module.pipeline,
+        "process_audio",
+        side_effect=RuntimeError("test inference failure")
+    ):
+        with client.websocket_connect("/ws/live-translate") as ws:
+            ws.send_text(json.dumps({
+                "action": "session_start",
+                "session_id": "sess-recoverable-error",
+                "source_lang": "en",
+                "target_lang": "hi"
+            }))
+            assert ws.receive_json()["type"] == "session_acknowledged"
+
+            ws.send_bytes(generate_pcm16_chunk(duration_sec=0.5))
+            ws.send_text(json.dumps({"action": "flush"}))
+
+            error = ws.receive_json()
+            assert error["type"] == "processing_error"
+            assert error["error_code"] == "SEGMENT_PROCESSING_FAILED"
+            assert error["recoverable"] is True
+
+            ws.send_text(json.dumps({"action": "ping"}))
+            assert ws.receive_json()["type"] == "pong"

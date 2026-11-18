@@ -137,6 +137,15 @@ class SarvamTTSProvider(BaseTTSProvider):
                 emotion_applied=preservation_plan.emotion,
             )
 
+        # Sarvam API limits input string to max 500 characters
+        if len(clean_text) > 490:
+            logger.warning(f"[SarvamTTSProvider] Text length {len(clean_text)} exceeds 490 chars. Truncating to avoid 400 rejection.")
+            cut = clean_text[:490].rfind(" ")
+            if cut > 200:
+                clean_text = clean_text[:cut] + "..."
+            else:
+                clean_text = clean_text[:487] + "..."
+
         # Map target language code
         t_code = target_lang.lower().strip()
         is_hindi = t_code.startswith("hi") or t_code == "hin"

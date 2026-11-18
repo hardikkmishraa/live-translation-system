@@ -205,10 +205,13 @@ class WhisperASRModel(BaseASRModel):
                 }
             )
 
-        # 5. Generate kwargs
-        generate_kwargs = {"task": "transcribe"}
+        # 5. Language identification & Generate kwargs
         if language and language in ("hi", "en"):
-            generate_kwargs["language"] = language
+            detected_lang = language
+        else:
+            detected_lang = self.detect_language(trimmed_audio, sample_rate=sample_rate)
+
+        generate_kwargs = {"task": "transcribe", "language": detected_lang}
 
         try:
             result = self.pipeline(
@@ -239,8 +242,9 @@ class WhisperASRModel(BaseASRModel):
                     if trimmed_rms < 0.022 or trimmed_dur < 0.45 or max_amp < 0.07:
                         raw_text = ""
 
-            # Language identification
-            detected_lang = language or self._heuristic_lang_detect(raw_text)
+            # Final language verification: if text has Devanagari characters, enforce Hindi
+            if self._has_devanagari(raw_text):
+                detected_lang = "hi"
 
             # The Transformers ASR pipeline does not expose token log-probabilities
             # through this call, so a calibrated utterance confidence is unavailable.
@@ -281,6 +285,49 @@ class WhisperASRModel(BaseASRModel):
                     "confidence_status": "unavailable_transcription_error",
                 }
             )
+
+    def detect_language(self, audio: np.ndarray, sample_rate: int = 16000) -> str:
+        """
+        Acoustically identifies whether input speech is Hindi ('hi') or English ('en')
+        from Whisper's audio encoder and decoder step-1 language token logits.
+        """
+        try:
+            self._ensure_loaded()
+            model = self.pipeline.model
+            feature_extractor = self.pipeline.feature_extractor
+            tokenizer = self.pipeline.tokenizer
+
+            # Guard on input length
+            if len(audio) < 1600:
+                return "en"
+
+            inputs = feature_extractor(audio, sampling_rate=sample_rate, return_tensors="pt")
+            input_features = inputs.input_features.to(model.device)
+
+            hi_token_id = tokenizer.convert_tokens_to_ids("<|hi|>")
+            en_token_id = tokenizer.convert_tokens_to_ids("<|en|>")
+            sot_token_id = tokenizer.convert_tokens_to_ids("<|startoftranscript|>")
+
+            decoder_input_ids = torch.tensor([[sot_token_id]], device=model.device)
+            with torch.no_grad():
+                logits = model(input_features, decoder_input_ids=decoder_input_ids).logits
+                first_step_logits = logits[0, 0]
+                p_hi = torch.softmax(first_step_logits, dim=-1)[hi_token_id].item()
+                p_en = torch.softmax(first_step_logits, dim=-1)[en_token_id].item()
+
+            if p_hi > p_en:
+                return "hi"
+            return "en"
+        except Exception as e:
+            logger.warning(f"[WhisperASR] Acoustic language detection failed, fallback to English: {e}")
+            return "en"
+
+    @staticmethod
+    def _has_devanagari(text: str) -> bool:
+        """Returns True if string contains any Devanagari script characters."""
+        if not text:
+            return False
+        return any('\u0900' <= c <= '\u097F' for c in text)
 
     @staticmethod
     def _heuristic_lang_detect(text: str) -> str:

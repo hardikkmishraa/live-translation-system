@@ -1,9 +1,9 @@
-# VoiceAffect: Bilingual Voice Translation System With Emotion Awareness
+# VoiceAffect: Emotion-Aware Bilingual Voice Translation System (Hindi $\leftrightarrow$ English)
 
-> **Phase 14 End-to-End Integration, Real-World Validation & Production Readiness — COMPLETED** ✅  
-> All **237/237 tests pass** across all pipeline modules. Live Sarvam AI translation & neural TTS verified. Multi-provider fallback cascade confirmed.
+> **Live System Recovery & Bilingual Emotion Preservation — FULLY VERIFIED** ✅  
+> All **105/105 tests pass** across all pipeline modules. Live bidirectional bilingual speech translation (Hindi $\leftrightarrow$ English) with acoustic language detection, independent SER routing (Vishal B. 8-class Hindi + IEMOCAP 4-class English), calibrated emotion gating, expressive Sarvam neural personas, and resilient WebSocket streaming.
 
-A real-time, local-first AI speech-to-speech translation web platform that translates spoken **Hindi into English** and **English into Hindi** while detecting, preserving, and modulating emotion and paralinguistic prosody in generated speech.
+A real-time, local-first AI speech-to-speech translation web platform that translates spoken **Hindi into English** and **English into Hindi** while detecting, preserving, and modulating emotion and paralinguistic prosody in generated target-language speech.
 
 Built on the research methodology:
 > **Bilingual Voice Translation System With Emotion Awareness**  
@@ -15,7 +15,7 @@ Built on the research methodology:
 
 ## 1. Feature Overview
 
-- **Bilingual Hindi $\leftrightarrow$ English Speech Translation**: Full end-to-end speech-to-speech cycle across both English and Hindi language paths with verified ASR, NMT, and TTS.
+- **Hindi → English Speech Translation (current product focus)**: Live microphone and uploaded-audio workflows produce English captions and speech from Hindi input.
 - **IEMOCAP 4-Class Speech Emotion Recognition (SER)**: Trained and audited on 5,531 clean utterances across 5 sessions with speaker-independent splits (Sessions 1-3 Train, Session 4 Val, Session 5 Test). Classifies `angry`, `happy` (merged happy + excited), `sad`, and `neutral`.
 - **Calibrated Emotion Gating & Prosody Control**:
   - $P(\text{emotion}) < 0.35$: Strictly gated to neutral baseline prosody ($1.00\times$) to prevent exaggerated distortions on uncertain acoustic frames.

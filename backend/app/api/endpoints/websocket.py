@@ -5,8 +5,11 @@ import uuid
 from dataclasses import asdict, is_dataclass
 from typing import Dict, Any, Optional
 
+import os
+import torch
 import numpy as np
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket
+from starlette.websockets import WebSocketDisconnect, WebSocketDisconnected
 
 from backend.app.core.audio_processor import AudioProcessor
 from backend.app.services.pipeline import LiveTranslationPipeline
@@ -25,9 +28,22 @@ audio_proc = AudioProcessor(target_sample_rate=16000)
 MAX_CHUNK_BYTES = 256 * 1024       # 256 KB max per binary frame
 MAX_BUFFER_SAMPLES = 16000 * 15    # 15 seconds max buffer safety limit
 SILENCE_THRESHOLD_RMS = 0.007     # Energy threshold for speech activity
-SILENCE_CHUNKS_TRIGGER = 3         # Number of consecutive silent chunks (~600-750ms) to trigger utterance end
+SILENCE_CHUNKS_TRIGGER = 8         # Number of consecutive silent chunks (~680ms at 85ms/chunk) to trigger utterance end
 MIN_SPEECH_SAMPLES = 4800          # At least 300ms of speech before boundary finalization
 SESSION_TIMEOUT_SECONDS = 120.0    # Disconnect idle sessions after 2 minutes
+
+
+async def _safe_send_json(websocket: WebSocket, payload: Dict[str, Any]) -> bool:
+    """Safely emits JSON to websocket client, isolating any client disconnection exceptions."""
+    try:
+        await websocket.send_json(payload)
+        return True
+    except (WebSocketDisconnect, WebSocketDisconnected):
+        logger.debug("[WebSocket] Send skipped: client disconnected.")
+        return False
+    except Exception as e:
+        logger.warning(f"[WebSocket] Failed to send JSON payload: {e}")
+        return False
 
 
 @router.websocket("/live-translate")
@@ -55,6 +71,7 @@ async def live_translate_ws(websocket: WebSocket):
     target_lang = "auto"
     user_consent_voice_cloning = False
     session_active = False
+    disable_ser = os.getenv("DISABLE_SER", "false").lower() == "true"
 
     # Streaming Components
     vad_chunker = StreamingVADChunker(
@@ -161,8 +178,9 @@ async def live_translate_ws(websocket: WebSocket):
                     last_partial_emit_time = now
                     try:
                         asr_model = model_lifecycle.get_asr()
-                        partial_res = asr_model.transcribe(
-                            vad_chunker.audio_buffer,
+                        partial_res = await asyncio.to_thread(
+                            asr_model.transcribe,
+                            vad_chunker.audio_buffer.copy(),
                             sample_rate=16000,
                             language=None if source_lang == "auto" else source_lang
                         )
@@ -195,6 +213,7 @@ async def live_translate_ws(websocket: WebSocket):
                         capture_start_time=utterance_capture_start,
                         emotion_aggregator=emotion_aggregator,
                         transcript_stabilizer=transcript_stabilizer,
+                        disable_ser=disable_ser,
                     )
                     if emitted_txt:
                         segment_id += 1
@@ -213,6 +232,8 @@ async def live_translate_ws(websocket: WebSocket):
                         req_source = msg.get("source_lang", "auto")
                         req_target = msg.get("target_lang", "auto")
                         user_consent_voice_cloning = bool(msg.get("user_consent", False))
+                        if "disable_ser" in msg:
+                            disable_ser = bool(msg.get("disable_ser"))
 
                         # Validate language settings
                         if req_source != "auto" and req_target != "auto" and req_source == req_target:
@@ -261,6 +282,7 @@ async def live_translate_ws(websocket: WebSocket):
                                 capture_start_time=utterance_capture_start,
                                 emotion_aggregator=emotion_aggregator,
                                 transcript_stabilizer=transcript_stabilizer,
+                                disable_ser=disable_ser,
                             )
                             if emitted_txt:
                                 segment_id += 1
@@ -300,6 +322,7 @@ async def live_translate_ws(websocket: WebSocket):
                                 capture_start_time=utterance_capture_start,
                                 emotion_aggregator=emotion_aggregator,
                                 transcript_stabilizer=transcript_stabilizer,
+                                disable_ser=disable_ser,
                             )
 
                         await websocket.send_json({
@@ -337,8 +360,8 @@ async def live_translate_ws(websocket: WebSocket):
                     await websocket.send_json(err_msg)
                     await websocket.send_json({**err_msg, "type": "processing_error"})
 
-    except WebSocketDisconnect:
-        logger.info(f"[WebSocket] Client disconnected (Session: {session_id}).")
+    except (WebSocketDisconnect, WebSocketDisconnected):
+        logger.info(f"[WebSocket] Client disconnected cleanly (Session: {session_id}).")
     except Exception as e:
         logger.error(f"[WebSocket] Session {session_id} encountered unexpected error: {e}", exc_info=True)
         try:
@@ -348,8 +371,8 @@ async def live_translate_ws(websocket: WebSocket):
                 "message": f"Server processing error: {str(e)}",
                 "recoverable": False
             }
-            await websocket.send_json(err_msg)
-            await websocket.send_json({**err_msg, "type": "error"})
+            await _safe_send_json(websocket, err_msg)
+            await _safe_send_json(websocket, {**err_msg, "type": "error"})
         except Exception:
             pass
 
@@ -365,6 +388,7 @@ async def _process_and_emit_segment(
     capture_start_time: float,
     emotion_aggregator: EmotionAggregator,
     transcript_stabilizer: TranscriptStabilizer,
+    disable_ser: bool = False,
 ) -> Optional[str]:
     """
     Executes end-to-end cognitive inference on a completed speech segment:
@@ -382,18 +406,34 @@ async def _process_and_emit_segment(
     forced_tgt = None if target_lang == "auto" else target_lang
 
     # Process through pipeline
-    res = pipeline.process_audio(
-        audio=audio_waveform,
-        sample_rate=16000,
-        forced_source_lang=forced_src,
-        forced_target_lang=forced_tgt,
-        synthesize_speech=True,
-        user_consent_for_voice_cloning=user_consent
-    )
+    try:
+        res = await asyncio.to_thread(
+            pipeline.process_audio,
+            audio=audio_waveform,
+            sample_rate=16000,
+            forced_source_lang=forced_src,
+            forced_target_lang=forced_tgt,
+            synthesize_speech=True,
+            user_consent_for_voice_cloning=user_consent,
+            disable_ser=disable_ser,
+        )
+    except Exception:
+        logger.exception(
+            f"[WebSocket] Translation failed for session {session_id}, segment {segment_id}."
+        )
+        await _safe_send_json(websocket, {
+            "type": "processing_error",
+            "error_code": "SEGMENT_PROCESSING_FAILED",
+            "message": "Could not process this speech segment. Please try again.",
+            "session_id": session_id,
+            "segment_id": segment_id,
+            "recoverable": True
+        })
+        return None
 
     # If no speech transcript was produced, emit listening ping
     if not res.source_transcript.strip():
-        await websocket.send_json({
+        await _safe_send_json(websocket, {
             "type": "ping",
             "session_id": session_id,
             "segment_id": segment_id,
@@ -408,7 +448,7 @@ async def _process_and_emit_segment(
         return None
 
     # 1. Emit Finalized Transcript Event
-    await websocket.send_json({
+    await _safe_send_json(websocket, {
         "type": "final_transcript",
         "session_id": session_id,
         "segment_id": segment_id,
@@ -443,11 +483,11 @@ async def _process_and_emit_segment(
         "aggregation_method": "exponential_moving_average_alpha_0.65",
         "language_limitation_warning": res.language_limitation_warning
     }
-    await websocket.send_json({**emotion_payload, "type": "emotion_updated"})
-    await websocket.send_json({**emotion_payload, "type": "emotion_update"})
+    await _safe_send_json(websocket, {**emotion_payload, "type": "emotion_updated"})
+    await _safe_send_json(websocket, {**emotion_payload, "type": "emotion_update"})
 
     # 3. Emit Translation Completed Event (Sarvam result)
-    await websocket.send_json({
+    await _safe_send_json(websocket, {
         "type": "translation_completed",
         "session_id": session_id,
         "segment_id": segment_id,
@@ -465,7 +505,7 @@ async def _process_and_emit_segment(
         resolved_audio_url = f"/api/v1/audio/{res.audio_filename}"
 
     if res.audio_base64 or resolved_audio_url:
-        await websocket.send_json({
+        await _safe_send_json(websocket, {
             "type": "audio_ready",
             "session_id": session_id,
             "segment_id": segment_id,
@@ -489,7 +529,7 @@ async def _process_and_emit_segment(
     else:
         preservation_dict = dict(res.preservation_plan)
 
-    await websocket.send_json({
+    await _safe_send_json(websocket, {
         "type": "translation_chunk",
         "session_id": session_id,
         "segment_id": segment_id,
@@ -533,5 +573,8 @@ async def _process_and_emit_segment(
             "end_to_end_utterance_ms": round(end_to_end_utterance_latency_ms, 1)
         }
     })
+
+    if torch.backends.mps.is_available():
+        torch.mps.empty_cache()
 
     return stabilized_transcript

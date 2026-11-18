@@ -143,7 +143,7 @@
           <div class="workspace-hero">
             <div class="workspace-hero-brand">VoiceAffect</div>
             <h1 class="workspace-hero-title">Speak. Translate. Feel.</h1>
-            <p class="workspace-hero-subtitle">Hindi ↔ English · Emotion-aware voice translation</p>
+            <p class="workspace-hero-subtitle">Your detected tone guides how the English translation is spoken.</p>
           </div>
 
           <!-- Centerpiece Voice Card (matching user photo) -->
@@ -164,7 +164,7 @@
             <h3 class="voice-card-status-title" id="voiceStatusTitle">Start a conversation</h3>
             <p class="voice-card-status-sub" id="voiceStatusSubtitle">Your microphone is ready</p>
 
-            <!-- Language Pill Selector (matching user photo) -->
+            <!-- Language Pill Selector -->
             <div class="pill-language-capsule">
               <span class="pill-lang-label" id="pillLangSource">Hindi</span>
               <button class="btn-pill-swap" id="btnSwapLanguage" title="Swap Language Direction" aria-label="Swap Language Direction">
@@ -175,9 +175,8 @@
               <span class="pill-lang-label" id="pillLangTarget">English</span>
             </div>
 
-            <!-- Hidden programmatic select element for test & script compatibility -->
+            <!-- Programmatic select element for direction management -->
             <select id="selectLanguageDirection" class="form-select" style="display: none;" aria-label="Language Direction">
-              <option value="auto">Auto-Detect Direction</option>
               <option value="hi_to_en" selected>Hindi (हिंदी) ➔ English</option>
               <option value="en_to_hi">English ➔ Hindi (हिंदी)</option>
             </select>
@@ -364,7 +363,7 @@
                ==================================================================== -->
           <div class="emotion-compact-card">
             <div class="emotion-card-left">
-              <span class="emotion-label-title">Acoustic Emotion:</span>
+              <span class="emotion-label-title">Detected voice emotion:</span>
               <span class="emotion-badge-pill" id="dominantEmotionBadge">Neutral</span>
               <span class="emotion-confidence-text" id="emotionConfidenceBadge">Conf: --%</span>
             </div>
@@ -374,7 +373,7 @@
             </div>
           </div>
 
-          <!-- 4 Distinct Stages: Detected Emotion, Translation, Heuristic Adaptation, Speech Output -->
+          <!-- 4 stages: detected emotion, translation, emotion-shaped voice, speech output -->
           <div class="pipeline-four-stages-grid" id="pipelineFourStagesGrid">
             <!-- Stage 1: Detected Emotion -->
             <div class="stage-pipeline-card">
@@ -400,11 +399,11 @@
               </div>
             </div>
 
-            <!-- Stage 3: Heuristic Prosody Adaptation -->
+            <!-- Stage 3: Emotion-shaped English voice -->
             <div class="stage-pipeline-card">
               <div class="stage-pipeline-header">
                 <span class="stage-num-badge">3</span>
-                <span class="stage-pipeline-title">Heuristic Prosody</span>
+                <span class="stage-pipeline-title">Emotion in English voice</span>
               </div>
               <div class="stage-pipeline-body">
                 <div class="stage-pipeline-primary" id="stageProsodyStatusText">Prosody Plan Ready</div>
@@ -416,7 +415,7 @@
             <div class="stage-pipeline-card">
               <div class="stage-pipeline-header">
                 <span class="stage-num-badge">4</span>
-                <span class="stage-pipeline-title">TTS Speech Output</span>
+                <span class="stage-pipeline-title">English voice output</span>
               </div>
               <div class="stage-pipeline-body">
                 <div class="stage-pipeline-primary" id="stageTtsStatusText">macOS say</div>
@@ -651,7 +650,7 @@
               <div class="metric-kpi-card">
                 <span class="metric-kpi-label">Top Direction</span>
                 <span class="metric-kpi-val" id="kpiTopDirection" style="font-size: 18px;">None</span>
-                <span class="metric-kpi-sub" id="kpiDirectionRatio">Hindi ↔ English</span>
+                <span class="metric-kpi-sub" id="kpiDirectionRatio">Hindi → English</span>
               </div>
             </div>
 

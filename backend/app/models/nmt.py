@@ -190,9 +190,27 @@ class SarvamNMTModel(BaseNMTModel):
                 enable_preprocessing=True,
             )
 
+            translated = result["translated_text"]
+            # Deduplicate runaway word repetitions (NMT looping hallucination guard)
+            words = translated.split()
+            if len(words) > 5:
+                cleaned_words = []
+                consecutive_count = 1
+                last_w = None
+                for w in words:
+                    if w.lower() == (last_w.lower() if last_w else None):
+                        consecutive_count += 1
+                        if consecutive_count <= 2:
+                            cleaned_words.append(w)
+                    else:
+                        consecutive_count = 1
+                        last_w = w
+                        cleaned_words.append(w)
+                translated = " ".join(cleaned_words)
+
             return NMTResult(
                 source_text=clean_text,
-                translated_text=result["translated_text"],
+                translated_text=translated,
                 source_lang=s_lang,
                 target_lang=t_lang,
                 latency_ms=result["latency_ms"],

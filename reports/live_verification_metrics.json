@@ -1,0 +1,126 @@
+{
+  "phase_b_neutral": [
+    {
+      "direction": "hi->en",
+      "src": "Suraj gotcha vidya adhi hai.",
+      "tgt": "Suraj is a student of Vidya.",
+      "emotion": "neutral",
+      "latency_ms": 8872.607946395874
+    },
+    {
+      "direction": "en->hi",
+      "src": "Thank you very much.",
+      "tgt": "\u092c\u0939\u0941\u0924-\u092c\u0939\u0941\u0924 \u0927\u0928\u094d\u092f\u0935\u093e\u0926\u0964",
+      "emotion": "neutral",
+      "latency_ms": 1733.9789867401123
+    }
+  ],
+  "phase_c_d_bilingual": [
+    {
+      "lang": "hi",
+      "model": "bilingual-ser-router-v1 -> hindi-wav2vec2-xlsr-8class",
+      "classes_count": 8,
+      "emotion": "happy",
+      "confidence": 0.7397
+    },
+    {
+      "lang": "en",
+      "model": "bilingual-ser-router-v1 -> iemocap-wav2vec2-xlsr-4class",
+      "classes_count": 4,
+      "emotion": "happy",
+      "confidence": 0.4209
+    }
+  ],
+  "phase_e_f_expressive": [
+    {
+      "test_case": "hi_happy",
+      "src_lang": "hi",
+      "tgt_lang": "en",
+      "emotion": "happy",
+      "confidence": 0.7397,
+      "gating_z": 0.621,
+      "voice_persona": "sophia_en_conversational",
+      "pitch": 1.166,
+      "pace": 1.132,
+      "loudness_db": 1.1,
+      "translated_text": "Suraj is a student of Vidya.",
+      "audio_file": "/Users/hardikmishra/Data science projects/live translation system/reports/audio_samples/hi_happy_translated_en.wav",
+      "latency": {
+        "asr_ms": 391.47,
+        "ser_ms": 261.31,
+        "nmt_ms": 699.5,
+        "tts_ms": 807.11,
+        "total_ms": 2242.4769401550293
+      }
+    },
+    {
+      "test_case": "hi_angry",
+      "src_lang": "hi",
+      "tgt_lang": "en",
+      "emotion": "angry",
+      "confidence": 0.98,
+      "gating_z": 0.599,
+      "voice_persona": "zarina_en_conversation",
+      "pitch": 1.215,
+      "pace": 1.208,
+      "loudness_db": 1.2,
+      "translated_text": "Ach Chaviddharti is always running from pride.",
+      "audio_file": "/Users/hardikmishra/Data science projects/live translation system/reports/audio_samples/hi_angry_translated_en.wav",
+      "latency": {
+        "asr_ms": 632.53,
+        "ser_ms": 254.84,
+        "nmt_ms": 810.21,
+        "tts_ms": 2209.24,
+        "total_ms": 3998.605966567993
+      }
+    },
+    {
+      "test_case": "hi_sad",
+      "src_lang": "hi",
+      "tgt_lang": "en",
+      "emotion": "fear",
+      "confidence": 0.6028,
+      "gating_z": 0.554,
+      "voice_persona": "chandrika_en_stories",
+      "pitch": 1.174,
+      "pace": 1.12,
+      "loudness_db": 0.9,
+      "translated_text": "Question Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot Patriot",
+      "audio_file": "/Users/hardikmishra/Data science projects/live translation system/reports/audio_samples/hi_sad_translated_en.wav",
+      "latency": {
+        "asr_ms": 474.81,
+        "ser_ms": 265.81,
+        "nmt_ms": 2357.63,
+        "tts_ms": 11198.43,
+        "total_ms": 14413.625001907349
+      }
+    },
+    {
+      "test_case": "en_speech",
+      "src_lang": "en",
+      "tgt_lang": "hi",
+      "emotion": "happy",
+      "confidence": 0.4209,
+      "gating_z": 0.621,
+      "voice_persona": "simran_hi_social_excited",
+      "pitch": 1.078,
+      "pace": 1.062,
+      "loudness_db": 1.047,
+      "translated_text": "\u092c\u0939\u0941\u0924-\u092c\u0939\u0941\u0924 \u0927\u0928\u094d\u092f\u0935\u093e\u0926\u0964",
+      "audio_file": "/Users/hardikmishra/Data science projects/live translation system/reports/audio_samples/en_speech_translated_hi.wav",
+      "latency": {
+        "asr_ms": 333.39,
+        "ser_ms": 263.49,
+        "nmt_ms": 700.39,
+        "tts_ms": 595.67,
+        "total_ms": 1939.4750595092773
+      }
+    }
+  ],
+  "memory_profile": {
+    "start_rss_mb": 397.265625,
+    "end_rss_mb": 627.15625,
+    "delta_rss_mb": 229.890625,
+    "mps_allocated_mb": 2554.75244140625
+  }
+}

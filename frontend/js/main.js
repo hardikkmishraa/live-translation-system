@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (audioManager.isRecording && !audioManager.isPaused) {
         const sub = document.getElementById('voiceStatusSubtitle');
         if (sub) {
-          sub.textContent = `${formattedDuration} · Speak now in Hindi or English`;
+          sub.textContent = `${formattedDuration} · Speak now in Hindi`;
         }
       }
     }
@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pillLangTarget = document.getElementById('pillLangTarget');
 
   function updateLanguagePills() {
+    if (!languageSelect) return;
     const val = languageSelect.value;
     if (val === 'en_to_hi') {
       if (pillLangSource) pillLangSource.textContent = 'English';
@@ -246,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnSwapLang) {
     btnSwapLang.addEventListener('click', () => {
+      if (!languageSelect) return;
       const current = languageSelect.value;
       if (current === 'hi_to_en' || current === 'auto') {
         languageSelect.value = 'en_to_hi';
@@ -370,16 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start Live Speech
   btnStartLive.addEventListener('click', async () => {
     try {
-      const langDir = languageSelect.value;
-      let srcLang = 'auto';
-      let tgtLang = 'auto';
-      if (langDir === 'hi_to_en') {
-        srcLang = 'hi'; tgtLang = 'en';
-      } else if (langDir === 'en_to_hi') {
-        srcLang = 'en'; tgtLang = 'hi';
+      const langDir = languageSelect ? languageSelect.value : 'hi_to_en';
+      let srcLang = 'hi';
+      let tgtLang = 'en';
+      if (langDir === 'en_to_hi') {
+        srcLang = 'en';
+        tgtLang = 'hi';
       }
 
-      wsClient.connect(null, srcLang, tgtLang, false);
+      await wsClient.connect(null, srcLang, tgtLang, false);
 
       const analyser = await audioManager.start();
       visualizer.attachAnalyser(analyser);
@@ -395,16 +396,20 @@ document.addEventListener('DOMContentLoaded', () => {
         mainMicButton.classList.remove('processing');
       }
       if (voiceStatusTitle) voiceStatusTitle.textContent = 'Listening...';
-      if (voiceStatusSubtitle) voiceStatusSubtitle.textContent = 'Speak clearly in Hindi or English';
+      if (voiceStatusSubtitle) {
+        voiceStatusSubtitle.textContent = srcLang === 'hi' ? 'Speak naturally in Hindi' : 'Speak naturally in English';
+      }
 
       recIndicator.style.display = 'inline-flex';
       if (visualizerOverlay) visualizerOverlay.style.display = 'none';
       setPipelineStage('recording');
 
     } catch (err) {
-      alert(`Microphone permission required: ${err.message}. Please allow microphone access.`);
+      wsClient.disconnect();
+      if (audioManager.isRecording) audioManager.stop();
+      alert(`Could not start live translation: ${err.message}`);
       btnStartLive.disabled = false;
-      results.showError(`Audio Capture Initialization Failed: ${err.message}`);
+      results.showError(`Live Translation Startup Failed: ${err.message}`);
     }
   });
 
@@ -673,11 +678,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btnProcessUploadedAudio.textContent = 'Processing Pipeline...';
     setPipelineStage('asr');
 
-    const dir = languageSelect.value;
-    let sLang = null;
-    let tLang = null;
-    if (dir === 'hi_to_en') { sLang = 'hi'; tLang = 'en'; }
-    else if (dir === 'en_to_hi') { sLang = 'en'; tLang = 'hi'; }
+    const dir = languageSelect ? languageSelect.value : 'hi_to_en';
+    let sLang = 'hi';
+    let tLang = 'en';
+    if (dir === 'en_to_hi') {
+      sLang = 'en';
+      tLang = 'hi';
+    }
 
     try {
       setPipelineStage('ser');

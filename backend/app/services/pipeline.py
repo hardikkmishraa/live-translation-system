@@ -7,6 +7,7 @@ from dataclasses import dataclass, asdict, is_dataclass, field
 from pathlib import Path
 from typing import Dict, Optional, Any, List, Union, Tuple
 import numpy as np
+import torch
 
 from backend.app.config import TTS_ENGINE
 from backend.app.core.audio_processor import AudioProcessor
@@ -175,7 +176,8 @@ class LiveTranslationPipeline:
         synthesize_speech: bool = True,
         original_audio_filename: Optional[str] = None,
         user_consent_for_voice_cloning: bool = False,
-        request_id: Optional[str] = None
+        request_id: Optional[str] = None,
+        disable_ser: bool = False,
     ) -> PipelineResult:
         t_pipeline_start = time.perf_counter()
         req_id = request_id or uuid.uuid4().hex
@@ -248,8 +250,25 @@ class LiveTranslationPipeline:
         # Benchmarked for Phase 8: On Apple Silicon MPS, concurrent execution causes Metal GPU queue contention (+36% slower, 505ms vs 370ms).
         # Hence sequential is the faster, optimal execution model for macOS M-series unified memory.
         run_concurrent = os.environ.get("CONCURRENT_ASR_SER", "false").lower() == "true"
+        disable_ser_flag = disable_ser or os.environ.get("DISABLE_SER", "false").lower() == "true"
         t_asr_ser_start = time.perf_counter()
-        if run_concurrent and forced_source_lang:
+
+        if disable_ser_flag:
+            asr_res, asr_status, asr_warn, asr_err = self._run_asr_safe(proc_audio, sample_rate, forced_source_lang)
+            ser_res = SERResult(
+                top_emotion="neutral",
+                probabilities={"neutral": 1.0},
+                valence=0.5,
+                arousal=0.5,
+                dominance=0.5,
+                latency_ms=0.0,
+                model_name="ser_disabled_neutral_baseline",
+                is_demo=False,
+                details={"status": "disabled", "reason": "disable_ser_flag_active"}
+            )
+            ser_status = "disabled_neutral"
+            ser_warn = None
+        elif run_concurrent and forced_source_lang:
             with ThreadPoolExecutor(max_workers=2) as executor:
                 future_asr = executor.submit(self._run_asr_safe, proc_audio, sample_rate, forced_source_lang)
                 future_ser = executor.submit(self._run_ser_safe, proc_audio, sample_rate, forced_source_lang)
@@ -471,6 +490,9 @@ class LiveTranslationPipeline:
             f"ser={ser_res.latency_ms:.1f}ms | parallel_asr_ser={t_asr_ser_total_ms:.1f}ms | "
             f"nmt={nmt_res.latency_ms:.1f}ms | tts={tts_ms:.1f}ms"
         )
+
+        if torch.backends.mps.is_available():
+            torch.mps.empty_cache()
 
         return PipelineResult(
             request_id=req_id,

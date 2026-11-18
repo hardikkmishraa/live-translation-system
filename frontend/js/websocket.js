@@ -12,6 +12,7 @@ export class LiveWebSocketClient {
     this.sessionId = null;
     this.isConnected = false;
     this.isConnecting = false;
+    this.connectionPromise = null;
 
     // Callbacks
     this.onMessageCallback = null;
@@ -25,8 +26,11 @@ export class LiveWebSocketClient {
   }
 
   connect(sessionId = null, sourceLang = 'auto', targetLang = 'auto', userConsent = false) {
-    if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
-      return;
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      return Promise.resolve();
+    }
+    if (this.ws && this.ws.readyState === WebSocket.CONNECTING) {
+      return this.connectionPromise;
     }
 
     this.sessionId = sessionId || Math.random().toString(36).substring(2, 10);
@@ -41,75 +45,111 @@ export class LiveWebSocketClient {
     }
     const wsUrl = `${protocol}//${host}${this.endpoint}`;
 
-    try {
-      this.ws = new WebSocket(wsUrl);
-      this.ws.binaryType = 'arraybuffer';
+    this.connectionPromise = new Promise((resolve, reject) => {
+      let settled = false;
+      const finish = (error = null) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(connectionTimeout);
+        this.connectionPromise = null;
+        if (error) reject(error);
+        else resolve();
+      };
 
-      this.ws.onopen = () => {
-        this.isConnected = true;
+      const connectionTimeout = setTimeout(() => {
         this.isConnecting = false;
-        this.reconnectAttempts = 0;
-        this._notifyStatus('connected');
-
-        // Immediately transmit validated session_start
-        this.sendControl({
-          action: 'session_start',
-          session_id: this.sessionId,
-          source_lang: sourceLang,
-          target_lang: targetLang,
-          user_consent: Boolean(userConsent)
-        });
-
-        // Start 15s keepalive ping
-        this._startHeartbeat();
-      };
-
-      this.ws.onmessage = (event) => {
-        if (typeof event.data === 'string') {
-          try {
-            const parsed = JSON.parse(event.data);
-            if (this.onMessageCallback) {
-              this.onMessageCallback(parsed);
-            }
-          } catch (e) {
-            console.error('[WebSocket] Failed to parse text message:', e);
-          }
+        this._notifyStatus('error');
+        const error = new Error(`WebSocket connection timed out: ${wsUrl}`);
+        if (this.onErrorCallback) {
+          this.onErrorCallback({
+            type: 'error',
+            error_code: 'CONNECTION_TIMEOUT',
+            message: error.message,
+            recoverable: true
+          });
         }
-      };
+        finish(error);
+        if (this.ws) this.ws.close();
+      }, 10000);
 
-      this.ws.onerror = (err) => {
-        console.error('[WebSocket] Connection error:', err);
+      try {
+        this.ws = new WebSocket(wsUrl);
+        this.ws.binaryType = 'arraybuffer';
+
+        this.ws.onopen = () => {
+          this.isConnected = true;
+          this.isConnecting = false;
+          this.reconnectAttempts = 0;
+          this._notifyStatus('connected');
+
+          this.sendControl({
+            action: 'session_start',
+            session_id: this.sessionId,
+            source_lang: sourceLang,
+            target_lang: targetLang,
+            user_consent: Boolean(userConsent)
+          });
+
+          this._startHeartbeat();
+          finish();
+        };
+
+        this.ws.onmessage = (event) => {
+          if (typeof event.data === 'string') {
+            try {
+              const parsed = JSON.parse(event.data);
+              if (this.onMessageCallback) {
+                this.onMessageCallback(parsed);
+              }
+            } catch (e) {
+              console.error('[WebSocket] Failed to parse text message:', e);
+            }
+          }
+        };
+
+        this.ws.onerror = (err) => {
+          console.error('[WebSocket] Connection error:', err);
+          this.isConnecting = false;
+          this._notifyStatus('error');
+          const error = new Error(`WebSocket failed to connect to ${wsUrl}. Verify the server is running on http://${host}.`);
+          if (this.onErrorCallback) {
+            this.onErrorCallback({
+              type: 'error',
+              error_code: 'CONNECTION_ERROR',
+              message: error.message,
+              recoverable: true
+            });
+          }
+          finish(error);
+        };
+
+        this.ws.onclose = (event) => {
+          this.isConnected = false;
+          this.isConnecting = false;
+          this._stopHeartbeat();
+          this._notifyStatus('disconnected');
+          if (!settled) {
+            finish(new Error(`WebSocket closed before connecting (code ${event.code}).`));
+          }
+          console.log(`[WebSocket] Closed (Code: ${event.code}, Clean: ${event.wasClean})`);
+        };
+
+      } catch (err) {
+        this.isConnecting = false;
         this._notifyStatus('error');
         if (this.onErrorCallback) {
           this.onErrorCallback({
             type: 'error',
-            error_code: 'CONNECTION_ERROR',
-            message: `WebSocket failed to connect to ${wsUrl}. Verify the server is running on http://${host}.`,
+            error_code: 'INIT_FAILED',
+            message: err.message,
             recoverable: true
           });
         }
-      };
-
-      this.ws.onclose = (event) => {
-        this.isConnected = false;
-        this.isConnecting = false;
-        this._stopHeartbeat();
-        this._notifyStatus('disconnected');
-        console.log(`[WebSocket] Closed (Code: ${event.code}, Clean: ${event.wasClean})`);
-      };
-
-    } catch (err) {
-      this.isConnecting = false;
-      this._notifyStatus('error');
-      if (this.onErrorCallback) {
-        this.onErrorCallback({
-          type: 'error',
-          error_code: 'INIT_FAILED',
-          message: err.message,
-          recoverable: true
-        });
+        finish(err);
       }
-    }
+    });
+
+    return this.connectionPromise;
   }
 
   sendAudioChunk(pcmArrayBuffer) {
@@ -137,11 +177,7 @@ export class LiveWebSocketClient {
   }
 
   stopSession() {
-    const res = this.sendControl({ action: 'stop' });
-    setTimeout(() => {
-      this.disconnect();
-    }, 200);
-    return res;
+    return this.sendControl({ action: 'stop' });
   }
 
   disconnect() {

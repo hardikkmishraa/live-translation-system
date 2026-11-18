@@ -134,19 +134,27 @@ class LatentDepthEmotionPreserver(BaseEmotionPreserver):
         vol_mult = 1.0
         applied_emotion = emotion
 
+        # Calibrate thresholds for 8-class (chance=0.125) vs 4-class (chance=0.25)
+        is_8class = bool(
+            ser_result.details.get("native_8_class_probabilities")
+            or (ser_result.probabilities and len(ser_result.probabilities) > 4)
+        )
+        min_threshold = 0.22 if is_8class else TTS_MIN_CONFIDENCE_THRESHOLD
+        high_threshold = 0.40 if is_8class else TTS_CONFIDENCE_THRESHOLD
+
         if ENABLE_EMOTION_GATING:
-            if confidence < TTS_MIN_CONFIDENCE_THRESHOLD or emotion in ("neutral", "unavailable"):
+            if confidence < min_threshold or emotion in ("neutral", "unavailable"):
                 # Below minimum threshold: strict fallback to neutral baseline
                 pitch_mult = 1.0
                 rate_mult = 1.0
                 vol_mult = 1.0
                 applied_emotion = "neutral"
                 prosody_notes.append(
-                    f"Gated: SER confidence ({confidence:.2f}) < {TTS_MIN_CONFIDENCE_THRESHOLD}; defaulted to neutral."
+                    f"Gated: SER confidence ({confidence:.2f}) < {min_threshold}; defaulted to neutral."
                 )
-            elif confidence < TTS_CONFIDENCE_THRESHOLD:
-                # Soft blend interval [TTS_MIN_CONFIDENCE_THRESHOLD, TTS_CONFIDENCE_THRESHOLD)
-                blend_w = (confidence - TTS_MIN_CONFIDENCE_THRESHOLD) / (TTS_CONFIDENCE_THRESHOLD - TTS_MIN_CONFIDENCE_THRESHOLD)
+            elif confidence < high_threshold:
+                # Soft blend interval [min_threshold, high_threshold)
+                blend_w = (confidence - min_threshold) / (high_threshold - min_threshold)
                 pitch_mult = 1.0 + blend_w * (target_pitch - 1.0)
                 rate_mult = 1.0 + blend_w * (target_rate - 1.0)
                 vol_mult = 1.0 + blend_w * (target_vol - 1.0)
@@ -154,15 +162,17 @@ class LatentDepthEmotionPreserver(BaseEmotionPreserver):
                     f"Soft blended: SER confidence ({confidence:.2f}) scaled with factor {blend_w:.2f}."
                 )
             else:
-                # High confidence >= TTS_CONFIDENCE_THRESHOLD: full modulation
+                # High confidence >= high_threshold: full modulation
                 pitch_mult = target_pitch
                 rate_mult = target_rate
                 vol_mult = target_vol
                 prosody_notes.append(
-                    f"Full expressive modulation: SER confidence ({confidence:.2f}) >= {TTS_CONFIDENCE_THRESHOLD}."
+                    f"Full expressive modulation: SER confidence ({confidence:.2f}) >= {high_threshold}."
                 )
         else:
             pitch_mult = target_pitch
+            rate_mult = target_rate
+            vol_mult = target_vol
             rate_mult = target_rate
             vol_mult = target_vol
 
